@@ -1,4 +1,4 @@
-# omron-tee
+# subnet-2-tee
 
 ## Table of Contents
 
@@ -15,13 +15,13 @@
 
 ## Introduction
 
-We have extended the functionality of Omron, Bittensor SN2, to include the use of Trusted Execution Environments (TEEs) as a means of verification and Proof-of-Inference. Miners compete against each other to be the best in performance, and only the top miners receive rewards from the Bittensor network.
+We have extended the functionality of subnet-2, Bittensor SN2, to include the use of Trusted Execution Environments (TEEs) as a means of verification and Proof-of-Inference. Miners compete against each other to be the best in performance, and only the top miners receive rewards from the Bittensor network.
 
 Trusted Execution Environments (TEEs) provide a secure way of executing Trusted Apps (TAs). This enables 3rd parties to query models all while the inputs/prompts remain fully private to all parties.
 
-[Omron](https://omron.ai) is a Proof-of-Inference compute cluster deployed on Bittensor. [Omron SN 2](https://x.taostats.io/subnet/2) is the worlds largest zkml proving cluster.
+[subnet-2](https://subnet-2.ai) is a Proof-of-Inference compute cluster deployed on Bittensor. [subnet-2 SN 2](https://x.taostats.io/subnet/2) is the worlds largest zkml proving cluster.
 
-Omron currently supports verified inference through the use of zero knowledge proofs. Models are converted to zk circuits which produce cryptographic proof of execution.
+subnet-2 currently supports verified inference through the use of zero knowledge proofs. Models are converted to zk circuits which produce cryptographic proof of execution.
 Adding TEE functionality greatly reduces overhead incurred in verifying computation and improves response time, at the tradeoff of additional trust assumptions. Another goal of ours was to provide hardware enclave abstraction, allowing miners who have diverse hardware to easily participate in the network.
 
 This project was completed as a submission in the Brussels ** dAGI House ** hackathon July 5-7 2024. [DoraHacks Link](https://dorahacks.io/hackathon/dagihouse/buidl)
@@ -55,7 +55,7 @@ Comprehensive steps to start and connect to a development blockchain instance ca
 #### Within a virtual environment
 
 ```console
-pm2 start miner.py --name miner --interpreter ../omron-venv/bin/python --kill-timeout 3000 -- \
+pm2 start miner.py --name miner --interpreter ../subnet-2-venv/bin/python --kill-timeout 3000 -- \
 --netuid 1 \
 --subtensor.network local \
 --wallet.name {your_miner_key_name} \
@@ -84,7 +84,7 @@ pm2 start miner.py --name miner --interpreter python3 --kill-timeout 3000 -- \
 #### Within a virtual environment
 
 ```console
-pm2 start validator.py --name validator --interpreter ../omron-venv/bin/python --kill-timeout 3000 -- \
+pm2 start validator.py --name validator --interpreter ../subnet-2-venv/bin/python --kill-timeout 3000 -- \
 --netuid 1 \
 --subtensor.network local \
 --wallet.name {validator_key_name} \
