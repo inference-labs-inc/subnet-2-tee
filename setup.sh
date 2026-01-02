@@ -98,12 +98,12 @@ if ! command -v pm2 >/dev/null 2>&1; then
 	sudo npm install -g pm2
 fi
 # Ask user where they want to install the SN
-read -rp "Where would you like to install Omron? (./omron): " INSTALL_PATH </dev/tty
-INSTALL_PATH=${INSTALL_PATH:-./omron}
+read -rp "Where would you like to install the subnet? (./subnet-2): " INSTALL_PATH </dev/tty
+INSTALL_PATH=${INSTALL_PATH:-./subnet-2}
 
 # Clone SN repo into user's specified directory
 if ! [[ -d ${INSTALL_PATH} ]]; then
-	git clone https://github.com/inference-labs-inc/omron-subnet.git "${INSTALL_PATH}"
+	git clone https://github.com/inference-labs-inc/subnet-2.git "${INSTALL_PATH}"
 else
 	echo "${INSTALL_PATH} already exists"
 fi
@@ -115,13 +115,13 @@ VENV_TYPE=${VENV_TYPE:-none}
 # Install and activate virtualenv if requested
 if [[ ${VENV_TYPE} == "venv" ]]; then
 	echo "Setting up venv..."
-	python3 -m venv "${INSTALL_PATH}"/omron-venv
-	source "${INSTALL_PATH}"/omron-venv/bin/activate
+	python3 -m venv "${INSTALL_PATH}"/sn2-venv
+	source "${INSTALL_PATH}"/sn2-venv/bin/activate
 elif [[ ${VENV_TYPE} == "virtualenv" ]]; then
 	echo "Setting up virtualenv..."
 	sudo pip3 install virtualenv
-	virtualenv "${INSTALL_PATH}"/omron-venv
-	source "${INSTALL_PATH}"/omron-venv/bin/activate
+	virtualenv "${INSTALL_PATH}"/sn2-venv
+	source "${INSTALL_PATH}"/sn2-venv/bin/activate
 fi
 
 # Install Python dependencies from requirements.txt
@@ -150,5 +150,5 @@ echo "Syncing model files..."
 bash "./sync_model_files.sh"
 
 # Display next steps
-echo -e "\033[32mOmron has been installed to ${INSTALL_PATH}. Please run \`cd ${INSTALL_PATH}\` to navigate to the directory.\033[0m"
+echo -e "\033[32mThe subnet has been installed to ${INSTALL_PATH}. Please run \`cd ${INSTALL_PATH}\` to navigate to the directory.\033[0m"
 echo -e "\033[32mPlease see ${INSTALL_PATH}/docs/shared_setup_steps.md for the next steps.\033[0m"
